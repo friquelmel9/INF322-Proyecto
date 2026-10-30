@@ -14,7 +14,7 @@ export default function PendingActionsList({ acciones }) {
       </div>
 
       <div className="card-b">
-        <ul className="stack">
+        <ul className="stack pendientes-lista">
           {acciones.map((accion) => (
             <li key={accion.id}>
               <div className="stack">

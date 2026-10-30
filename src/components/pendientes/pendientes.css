@@ -1,0 +1,8 @@
+.pendientes-prioritaria {
+  border-inline-start: 4px solid var(--gold);
+}
+
+.pendientes-lista {
+  margin: 0;
+  padding-inline-start: 1.5rem;
+}

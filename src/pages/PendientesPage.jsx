@@ -3,6 +3,8 @@ import { acciones } from "../data/acciones.js";
 import NextActionCard from "../components/pendientes/NextActionCard.jsx";
 import PendingActionsList from "../components/pendientes/PendingActionsList.jsx";
 
+import "../components/pendientes/pendientes.css";
+
 export default function PendientesPage() {
   const accionesEtapa = acciones
     .filter((accion) => accion.etapaId === memorista.etapaActualId)

@@ -22,7 +22,11 @@ export default function ActionInstructions({ instrucciones }) {
         </button>
       </div>
 
-      <ol id={instruccionesId} hidden={!estanAbiertas}>
+      <ol
+        className="pendientes-lista"
+        id={instruccionesId}
+        hidden={!estanAbiertas}
+      >
         {instrucciones.map((instruccion, indice) => (
           <li key={indice}>{instruccion}</li>
         ))}

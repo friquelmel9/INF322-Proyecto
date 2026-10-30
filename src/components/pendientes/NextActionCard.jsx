@@ -4,7 +4,7 @@ import ActionInstructions from "./ActionInstructions.jsx";
 
 export default function NextActionCard({ accion }) {
   return (
-    <section className="card">
+    <section className="card pendientes-prioritaria">
       <div className="card-h">
         <h2>Acción prioritaria</h2>
       </div>
