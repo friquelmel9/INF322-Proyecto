@@ -1,0 +1,133 @@
+/* =====================================================================
+ * global.css — Módulo A
+ * Sistema de diseño migrado del prototipo de la Entrega 2
+ * (ProyEnt2/prototipo-ruta-titulacion.html). Contiene:
+ *   - Tokens de color/forma (:root) + tema claro/oscuro
+ *   - Reset y estilos base de elementos
+ *   - Utilidades tipográficas y primitivas compartidas (card, btn, note…)
+ *
+ * Propiedad: solo el Módulo A edita este archivo (ver docs/modulo-a.md).
+ * Los componentes visuales de estado (StatusBadge/ResponsibleBadge) los
+ * define el Módulo B; aquí solo viven los tokens y la base común.
+ * ===================================================================== */
+
+/* ============ TOKENS ============ */
+:root {
+  --ground: #eef1f6; --surface: #ffffff; --surface-2: #f6f8fc; --surface-3: #e9eef6;
+  --line: #dbe2ed; --line-strong: #bfcbdc;
+  --ink: #0f1927; --ink-2: #3c4a60; --ink-3: #6c7b92;
+  --navy: #16365e; --navy-2: #2c5d97; --navy-wash: #e7eef8;
+  --gold: #9e7115; --gold-wash: #f7edd7; --gold-line: #dfc183;
+  --granate: #8e2434;
+  --ok: #14684a; --ok-wash: #e1f1e9; --ok-line: #a7d3c0;
+  --wait: #8a5d00; --wait-wash: #faefd8; --wait-line: #e5c787;
+  --bad: #992730; --bad-wash: #f9e7e7; --bad-line: #e6b2b2;
+  --shadow: 0 1px 2px rgba(15, 25, 39, 0.06), 0 8px 24px -12px rgba(15, 25, 39, 0.18);
+  --shadow-lg: 0 2px 4px rgba(15, 25, 39, 0.06), 0 24px 48px -20px rgba(15, 25, 39, 0.3);
+  --r: 10px; --r-sm: 6px; --maxw: 1480px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0a1017; --surface: #121b27; --surface-2: #172232; --surface-3: #1e2b3d;
+    --line: #26364b; --line-strong: #3a4d67;
+    --ink: #e9eef6; --ink-2: #afbdd0; --ink-3: #7c8ca3;
+    --navy: #a8c6ec; --navy-2: #7ea9de; --navy-wash: #17273c;
+    --gold: #dfb25e; --gold-wash: #2b2415; --gold-line: #5c4a22;
+    --granate: #e2909c;
+    --ok: #6ed0a6; --ok-wash: #10281f; --ok-line: #255742;
+    --wait: #e4bc6c; --wait-wash: #2c2416; --wait-line: #5a4823;
+    --bad: #f0999f; --bad-wash: #2e1618; --bad-line: #5e2b30;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.5), 0 24px 48px -20px rgba(0, 0, 0, 0.8);
+  }
+}
+
+:root[data-theme="dark"] {
+  --ground: #0a1017; --surface: #121b27; --surface-2: #172232; --surface-3: #1e2b3d;
+  --line: #26364b; --line-strong: #3a4d67;
+  --ink: #e9eef6; --ink-2: #afbdd0; --ink-3: #7c8ca3;
+  --navy: #a8c6ec; --navy-2: #7ea9de; --navy-wash: #17273c;
+  --gold: #dfb25e; --gold-wash: #2b2415; --gold-line: #5c4a22;
+  --granate: #e2909c;
+  --ok: #6ed0a6; --ok-wash: #10281f; --ok-line: #255742;
+  --wait: #e4bc6c; --wait-wash: #2c2416; --wait-line: #5a4823;
+  --bad: #f0999f; --bad-wash: #2e1618; --bad-line: #5e2b30;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 8px 24px -12px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 2px 4px rgba(0, 0, 0, 0.5), 0 24px 48px -20px rgba(0, 0, 0, 0.8);
+}
+
+/* ============ RESET / BASE ============ */
+*, *::before, *::after { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14.5px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; font-weight: 600; }
+p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--navy-2); }
+:focus-visible { outline: 2px solid var(--navy-2); outline-offset: 2px; border-radius: 4px; }
+
+/* ============ UTILIDADES TIPOGRÁFICAS ============ */
+.mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+.serif { font-family: "Source Serif 4", Georgia, serif; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hide { display: none !important; }
+
+/* ============ ENCABEZADO DE PÁGINA ============ */
+.pagehead { display: flex; align-items: flex-end; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+.pagehead h1 {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 27px; letter-spacing: -0.015em; font-weight: 600;
+}
+.pagehead p { color: var(--ink-3); font-size: 13.5px; max-width: 62ch; }
+.eyebrow {
+  font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--ink-3); font-weight: 700; margin-bottom: 5px;
+}
+
+/* ============ PRIMITIVAS COMPARTIDAS (base común para C/D/E/F) ============ */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); }
+.card-h { display: flex; align-items: center; gap: 10px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+.card-h h2 { font-size: 14.5px; font-weight: 600; letter-spacing: -0.005em; }
+.card-h .sub { font-size: 12.5px; color: var(--ink-3); }
+.card-b { padding: 18px; }
+
+.grid { display: grid; gap: 16px; }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 7px; padding: 8px 15px; border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); cursor: pointer;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+}
+.btn:hover { background: var(--surface-2); }
+.btn.primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+.btn.primary:hover { filter: brightness(1.1); }
+.btn.ghost { border-color: transparent; background: transparent; color: var(--navy-2); }
+.btn.ghost:hover { background: var(--navy-wash); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn.sm { padding: 5px 11px; font-size: 12px; }
+/* En tema oscuro el texto sobre navy debe ser oscuro para contraste */
+:root[data-theme="dark"] .btn.primary { color: #0a1017; }
+:root:not([data-theme="light"]) .btn.primary { color: #0a1017; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .btn.primary { color: #fff; }
+}
+
+.note {
+  display: flex; gap: 11px; padding: 13px 15px; border-radius: var(--r-sm); font-size: 13px;
+  border: 1px solid var(--line); background: var(--surface-2); color: var(--ink-2);
+}
+.note b { color: var(--ink); }
+.note.warn { background: var(--wait-wash); border-color: var(--wait-line); color: var(--wait); }
+.note.warn b { color: var(--wait); }
+.note.bad { background: var(--bad-wash); border-color: var(--bad-line); color: var(--bad); }
+.note.bad b { color: var(--bad); }
