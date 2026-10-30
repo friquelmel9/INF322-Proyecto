@@ -1,6 +1,7 @@
 import { memorista } from "../data/memorista.js";
 import { acciones } from "../data/acciones.js";
 import NextActionCard from "../components/pendientes/NextActionCard.jsx";
+import ResponsibilityFlow from "../components/pendientes/ResponsibilityFlow.jsx";
 
 export default function PendientesPage() {
   const accionesEtapa = acciones
@@ -47,6 +48,11 @@ export default function PendientesPage() {
                   <li key={accion.id}>
                     <h3>{accion.titulo}</h3>
                     <p>{accion.descripcion}</p>
+
+                    <ResponsibilityFlow
+                      responsableActualId={accion.responsableActualId}
+                      siguienteResponsableId={accion.siguienteResponsableId}
+                    />
                   </li>
                 ))}
               </ul>

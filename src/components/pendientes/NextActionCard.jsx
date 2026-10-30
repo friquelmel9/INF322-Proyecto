@@ -1,5 +1,5 @@
 import StatusBadge from "../shared/StatusBadge.jsx";
-import ResponsibleBadge from "../shared/ResponsibleBadge.jsx";
+import ResponsibilityFlow from "./ResponsibilityFlow.jsx";
 
 export default function NextActionCard({ accion }) {
   return (
@@ -20,10 +20,10 @@ export default function NextActionCard({ accion }) {
 
         <p>{accion.descripcion}</p>
 
-        <p>
-          Responsable actual:{" "}
-          <ResponsibleBadge responsableId={accion.responsableActualId} />
-        </p>
+        <ResponsibilityFlow
+          responsableActualId={accion.responsableActualId}
+          siguienteResponsableId={accion.siguienteResponsableId}
+        />
       </div>
     </section>
   );
