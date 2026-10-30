@@ -1,7 +1,7 @@
 import { memorista } from "../data/memorista.js";
 import { acciones } from "../data/acciones.js";
 import NextActionCard from "../components/pendientes/NextActionCard.jsx";
-import ResponsibilityFlow from "../components/pendientes/ResponsibilityFlow.jsx";
+import PendingActionsList from "../components/pendientes/PendingActionsList.jsx";
 
 export default function PendientesPage() {
   const accionesEtapa = acciones
@@ -36,29 +36,7 @@ export default function PendientesPage() {
           </p>
         )}
 
-        {otrasAcciones.length > 0 && (
-          <section className="card">
-            <div className="card-h">
-              <h2>Otras acciones de tu etapa</h2>
-            </div>
-
-            <div className="card-b">
-              <ul className="stack">
-                {otrasAcciones.map((accion) => (
-                  <li key={accion.id}>
-                    <h3>{accion.titulo}</h3>
-                    <p>{accion.descripcion}</p>
-
-                    <ResponsibilityFlow
-                      responsableActualId={accion.responsableActualId}
-                      siguienteResponsableId={accion.siguienteResponsableId}
-                    />
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </section>
-        )}
+        <PendingActionsList acciones={otrasAcciones} />
       </div>
     </>
   );
