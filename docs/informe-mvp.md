@@ -6,11 +6,11 @@
 
 | Módulo | Integrante |
 |---|---|
-| A — Rutas y layout | Sebastian Duran |
-| B — Datos y componentes de estado | <rellenen> |
+| A — Rutas y layout | Sebastian Duran Valde|
+| B — Datos y componentes de estado | Facundo Riquelme |
 | C — Estado del proceso (H1) | Cristóbal Martínez |
-| D — Próxima acción (H2) | <rellenen> |
-| E — Documentos (H5) | Williams Ajata |
+| D — Próxima acción (H2) | Cristian Quintanilla |
+| E — Documentos (H5) | Williams Ajata Castillo |
 | F — Componentes auxiliares, pruebas y entrega | José Joaquín Felipe Alvarado Toro |
 
 ### Consideraciones Previas
@@ -33,17 +33,11 @@ La idea principal del proyecto es trabajar en una pagina web que cumpla con las 
 
 **Flujo:** Abrir `/proceso` → ver la etapa 5 como actual → distinguir las etapas 1–4 completadas y 6–8 pendientes → seleccionar una etapa.
 
-![H1 en escritorio](Screenshots/h1-escritorio.png)
-![H1 en móvil](Screenshots/h1-movil.png)
-
 ### H2 — Próxima acción y responsables (`/pendientes`)
 
 **Qué permite:** Saber qué debe hacer ahora el memorista, si es su turno o está esperando a un tercero, y quién interviene después.
 
 **Flujo:** Abrir `/pendientes` → identificar «Corregir el capítulo 4» → ver «Te toca a ti» → desplegar las instrucciones → leer «Después interviene: Profesor/a guía».
-
-![H2 en escritorio](capturas/h2-escritorio.png)
-![H2 en móvil](capturas/h2-movil.png)
 
 ### H5 — Documentos vigentes (`/documentos`)
 
@@ -51,22 +45,24 @@ La idea principal del proyecto es trabajar en una pagina web que cumpla con las 
 
 **Flujo:** Abrir `/documentos` → buscar «Reglamento» → abrir la ficha de la versión anterior → seleccionar «Ver versión vigente» → se abre `/documentos/reglamento-2026`.
 
-![H5 en escritorio](capturas/h5-escritorio.png)
-![H5 en móvil](capturas/h5-movil.png)
+### Capturas
 
-### Enlace entre H1 y H5 (opcional)
+#### Escritorio
 
-**Flujo:** en `/proceso`, abrir el detalle de la etapa 5 → «Ver documentos de esta etapa» → se abre `/documentos?etapa=5` con solo los documentos relacionados.
+<div align="center">
+  <img src="Screenshots/h1-escritorio.png" alt="H1 en escritorio">
+  <br><br>
+  <img src="Screenshots/h2-escritorio.png" alt="H2 en escritorio">
+  <br><br>
+  <img src="Screenshots/h5-escritorio.png" alt="H5 en escritorio">
 
-![Enlace cruzado](capturas/enlace-cruzado.png)
+</div>
 
-## 3. Accesibilidad y diseño responsivo (opcional)
 
-- Foco visible en todos los controles y uso con teclado.
-- Áreas táctiles de al menos 44 px y respeto a `prefers-reduced-motion`.
-- Menú lateral en uno en la parte superior de forma horizontal en pantallas de 820 px o menos.
-- Modal y mensajes de retroalimentación reutilizables (`Modal`, `FeedbackMessage`).
+#### Dispositivo Movil
 
-## 4. Conclusiones (opcional)
-
-COMPLETAR: qué se logró, qué quedó fuera de alcance (inicio de sesión, roles, calendario, notificaciones, subida real de archivos, API) y qué se aprendió del trabajo en paralelo con un contrato de datos compartido.
+<div style="display: grid; grid-template-columns: auto auto; gap: 10px; justify-content: center;">
+  <img src="Screenshots/h1-movil.png" alt="H1 en móvil" width="300">
+  <img src="Screenshots/h2-movil.png" alt="H2 en móvil" width="300">
+  <img src="Screenshots/h5-movil.png" alt="H5 en móvil" width="300" style="grid-column: span 2; justify-self: center;">
+</div>
