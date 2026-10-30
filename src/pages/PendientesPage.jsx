@@ -22,14 +22,11 @@ export default function PendientesPage() {
             {memorista.nombre} · {memorista.curso} · Etapa{" "}
             {memorista.etapaActualId}
           </p>
+          <small className="pendientes-ayuda">Datos de demostración</small>
         </div>
       </div>
 
       <div className="stack">
-        <p className="note">
-          Escenario de demostración: los datos son simulados.
-        </p>
-
         {accionPrioritaria ? (
           <NextActionCard accion={accionPrioritaria} />
         ) : (
