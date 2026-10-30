@@ -41,8 +41,47 @@ make dev
 
 **Si no se tiene `make` instalado en el dispositivo**, use directamente `npm install` y `npm run dev`.
 
+---
+
 ### Probar en el celular
 
 1. Ejecuta `make host`.
 2. Conecta el celular a la misma red Wi-Fi.
 3. Abre la dirección `Network` que muestra la terminal (por ejemplo `http://192.168.x.x:5173`).
+
+**Advertencia:** Es posible que si tiene activado el firewall en windows o linux no se permita realizar la conexion al sistema a traves del celular, para esto siga los siguientes pasos.
+
+#### Linux
+
+1. Abra la terminal y ejecute: 
+
+    > sudo firewall-cmd --permanent --add-port="INGRESE SU PUERTO LOCAL"/tcp 
+
+    > sudo firewall-cmd --reload
+
+2. Cuando termine de probar, ejecute en la terminal:
+
+    > sudo firewall-cmd --permanent --remove-port="INGRESE SU PUERTO LOCAL"/tcp
+
+    > sudo firewall-cmd --reload
+
+#### Windows
+
+1. En CMD o Powershell ejecute:
+
+    > netsh advfirewall firewall add rule name="Puerto Vite" dir=in action=allow protocol=TCP localport="INGRESE SU PUERTO LOCAL"
+
+2. Cuando termine de probar, ejecute en el CMD o Powershell:
+    
+    > netsh advfirewall firewall delete rule name="Puerto Vite"
+
+<div>
+  <br><br>
+</div>
+
+# ADVERTENCIAS
+- ## NO SE SALTE EL PASO 2, YA QUE SU PUERTO PUEDE QUEDAR DESPROTEGIDO
+- ## REALICE ESTA PRUEBA EN UNA CONEXION WI-FI CONFIABLE
+- ## ASUMA QUE AL REALIZAR ESTA PRUEBA DESCUIDA EL PUERTO, CUALQUIER VULNERACION QUEDA FUERA DE NUESTRA RESPONSABILIDAD
+
+---
