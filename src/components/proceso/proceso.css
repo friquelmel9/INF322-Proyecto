@@ -1,0 +1,34 @@
+.proceso-perfil { display: grid; grid-template-columns: 1fr 1.5fr auto; gap: 16px; margin: 0; }
+.proceso-perfil dt, .proceso-ayuda, .proceso-seleccion, .proceso-avance p { color: var(--ink-2); font-size: 13px; }
+.proceso-perfil dd { margin: 4px 0 0; font-weight: 600; }
+.proceso-actual { padding: 16px; border-inline-start: 4px solid var(--navy-2); background: var(--navy-wash); border-radius: var(--r-sm); }
+.proceso-fila { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; }
+.proceso-fila h3 { font-size: 17px; }
+.stack.proceso-avance, .stack.proceso-grupo { gap: 8px; }
+.proceso-avance label { font-weight: 600; }
+.proceso-avance progress { width: 100%; height: 12px; accent-color: var(--ok); }
+.proceso-timeline { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; list-style: none; margin: 0; padding: 0; }
+.proceso-etapa { min-width: 0; }
+.proceso-etapa-boton { display: flex; align-items: flex-start; gap: 10px; width: 100%; height: 100%; padding: 14px; text-align: left; cursor: pointer; border: 1px solid var(--line-strong); border-radius: var(--r); background: var(--surface); color: var(--ink); }
+.proceso-etapa-boton:hover { background: var(--surface-2); }
+.proceso-etapa-boton[aria-pressed="true"] { outline: 2px solid var(--navy-2); outline-offset: 2px; }
+.proceso-etapa-boton:focus-visible { outline: 3px solid var(--navy-2); outline-offset: 5px; }
+.proceso-etapa--actual .proceso-etapa-boton { border-color: var(--navy-2); background: var(--navy-wash); }
+.proceso-etapa--completada .proceso-etapa-boton { border-color: var(--ok-line); }
+.proceso-numero { display: grid; place-items: center; flex: 0 0 28px; height: 28px; border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface-2); font-weight: 700; }
+.proceso-etapa--completada .proceso-numero { background: var(--ok-wash); color: var(--ok); border-color: var(--ok-line); }
+.proceso-etapa--actual .proceso-numero { color: var(--navy-2); border-color: var(--navy-2); }
+.proceso-etapa-texto { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; min-width: 0; }
+.proceso-etapa-nombre { font-weight: 600; overflow-wrap: anywhere; }
+.proceso-detalle h3 { font-size: 14px; }
+.proceso-pasos { margin: 0; padding-inline-start: 24px; }
+.proceso-pasos li + li { margin-top: 8px; }
+.proceso-responsables { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+@media (min-width: 768px) and (max-width: 1200px) {
+  .proceso-timeline { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .proceso-perfil { grid-template-columns: minmax(0, 1fr); }
+  .proceso-timeline { display: flex; flex-direction: column; }
+  .proceso-detalle .btn { width: 100%; justify-content: center; }
+}
