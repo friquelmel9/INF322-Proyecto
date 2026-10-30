@@ -1,0 +1,218 @@
+/* =====================================================================
+ * accessibility.css — Módulo F
+ * Accesibilidad básica y estilos de los componentes compartidos del Módulo F:
+ *   - variables : alias --f-* que reutilizan los tokens de global.css
+ *                 (siguen solos el tema claro/oscuro de A)
+ *   - foco      : :focus-visible reforzado (3px) sobre el de global.css
+ *   - .sr-only  : texto solo para lectores de pantalla (equivale a .sr de A)
+ *   - .skip-link: enlace «Saltar al contenido» (opcional, requiere uso en el layout)
+ *   - táctil    : áreas interactivas de al menos 44px
+ *   - movimiento: prefers-reduced-motion y forced-colors
+ *   - .modal    : estilos de Modal.jsx
+ *   - .feedback : estilos de FeedbackMessage.jsx (exito, info, error)
+ *
+ * Orden de carga: después de global.css, layout.css y responsive.css
+ * (se importa en main.jsx).
+ * Propiedad: solo el Módulo F edita este archivo. Si se detectan fallos de
+ * accesibilidad en archivos de otros módulos, se avisa a su responsable.
+ * ===================================================================== */
+
+/* ============ ALIAS DE TOKENS (con respaldo si faltara global.css) ============ */
+:root {
+  --f-foco: var(--navy-2, #0b57d0);
+  --f-fondo: var(--surface, #ffffff);
+  --f-texto: var(--ink, #1f2933);
+  --f-borde: var(--line, #cbd2d9);
+  --f-sombra: var(--shadow-lg, 0 20px 40px rgba(0, 0, 0, 0.3));
+  --f-radio: var(--r, 10px);
+  --f-exito-fondo: var(--ok-wash, #e3f5e8);
+  --f-exito-texto: var(--ok, #14532d);
+  --f-exito-borde: var(--ok-line, #86c99b);
+  --f-info-fondo: var(--navy-wash, #e6f0fc);
+  --f-info-texto: var(--navy-2, #0b3d91);
+  --f-info-borde: var(--line-strong, #8db4ee);
+  --f-error-fondo: var(--bad-wash, #fde8e8);
+  --f-error-texto: var(--bad, #7f1d1d);
+  --f-error-borde: var(--bad-line, #eb9a9a);
+}
+
+/* ============ FOCO VISIBLE ============ */
+:focus-visible {
+  outline: 3px solid var(--f-foco);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--f-fondo);
+}
+
+/* ============ TEXTO SOLO PARA LECTORES DE PANTALLA ============ */
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============ ENLACE «SALTAR AL CONTENIDO» ============
+   Uso: <a className="skip-link" href="#contenido"> al inicio del layout
+   y id="contenido" en <main>. Ambos son del Módulo A. */
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -4rem;
+  z-index: 2000;
+  padding: 0.75rem 1rem;
+  background: var(--f-texto);
+  color: var(--f-fondo);
+  border-radius: 0.25rem;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* ============ ÁREAS TÁCTILES DE 44px ============ */
+button,
+[role="button"],
+a.btn,
+input[type="button"],
+input[type="submit"],
+select,
+input[type="search"],
+input[type="text"] {
+  min-height: 44px;
+}
+
+button,
+[role="button"],
+a.btn {
+  min-width: 44px;
+}
+
+nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* ============ MOVIMIENTO REDUCIDO / ALTO CONTRASTE ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 3px solid CanvasText;
+  }
+}
+
+/* ============ MODAL ============ */
+.modal-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(10, 16, 23, 0.6);
+}
+
+.modal {
+  width: 100%;
+  max-width: 36rem;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--f-fondo);
+  color: var(--f-texto);
+  border: 1px solid var(--f-borde);
+  border-radius: var(--f-radio);
+  box-shadow: var(--f-sombra);
+}
+
+.modal:focus {
+  outline: none;
+  box-shadow: var(--f-sombra);
+}
+
+.modal__encabezado {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--f-borde);
+}
+
+.modal__titulo {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--f-texto);
+}
+
+.modal__cuerpo {
+  padding: 1rem 1.25rem;
+  overflow-y: auto;
+  color: var(--f-texto);
+}
+
+.modal__pie {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--f-borde);
+}
+
+/* El botón «Cerrar» usa la clase .btn de global.css */
+
+/* ============ FEEDBACK MESSAGE ============ */
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0.75rem 0;
+  padding: 0.75rem 1rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm, 6px);
+  font-size: 13px;
+}
+
+.feedback__texto {
+  margin: 0;
+}
+
+.feedback--exito {
+  background: var(--f-exito-fondo);
+  color: var(--f-exito-texto);
+  border-color: var(--f-exito-borde);
+}
+
+.feedback--info {
+  background: var(--f-info-fondo);
+  color: var(--f-info-texto);
+  border-color: var(--f-info-borde);
+}
+
+.feedback--error {
+  background: var(--f-error-fondo);
+  color: var(--f-error-texto);
+  border-color: var(--f-error-borde);
+}
+
+.feedback__cerrar {
+  flex: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: var(--r-sm, 6px);
+}
