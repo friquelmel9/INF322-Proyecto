@@ -62,7 +62,7 @@ La idea principal del proyecto es trabajar en una pagina web que cumpla con las 
 #### Dispositivo Movil
 
 <div style="display: grid; grid-template-columns: auto auto; gap: 10px; justify-content: center;">
-  <img src="Screenshots/h1-movil.png" alt="H1 en móvil" width="300">
+  <img src="Screenshots/h1-movil.png" alt="H1 en móvil" width="300" style="grid-column: span 2; justify-self: center;">
   <img src="Screenshots/h2-movil.png" alt="H2 en móvil" width="300">
-  <img src="Screenshots/h5-movil.png" alt="H5 en móvil" width="300" style="grid-column: span 2; justify-self: center;">
+  <img src="Screenshots/h5-movil.png" alt="H5 en móvil" width="300">
 </div>
