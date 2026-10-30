@@ -1,8 +1,90 @@
-.pendientes-prioritaria {
+.card.pendientes-prioritaria {
   border-inline-start: 4px solid var(--gold);
 }
 
 .pendientes-lista {
   margin: 0;
   padding-inline-start: 1.5rem;
+}
+
+.pendientes-cabecera {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.pendientes-encabezado-accion,
+.pendientes-estado {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pendientes-encabezado-accion {
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.pendientes-titulo {
+  flex: 1 1 18rem;
+  font-size: 18px;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.pendientes-etiqueta {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.pendientes-descripcion,
+.pendientes-ayuda {
+  color: var(--ink-2);
+}
+
+.pendientes-ayuda {
+  font-size: 13px;
+}
+
+.pendientes-responsables {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.pendientes-responsable {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+
+.pendientes-responsable:only-child {
+  grid-column: 1 / -1;
+}
+
+.pendientes-responsable dt {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pendientes-responsable-valor {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+.stack.pendientes-instrucciones {
+  gap: 10px;
+  padding-block-start: 16px;
+  border-block-start: 1px solid var(--line);
+}
+
+@media (max-width: 640px) {
+  .pendientes-responsables {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

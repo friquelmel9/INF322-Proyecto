@@ -18,13 +18,15 @@ export default function PendingActionsList({ acciones }) {
           {acciones.map((accion) => (
             <li key={accion.id}>
               <div className="stack">
-                <h3>{accion.titulo}</h3>
-
-                <div>
-                  <StatusBadge tipo="accion" valor={accion.estado} />
+                <div className="pendientes-encabezado-accion">
+                  <h3 className="pendientes-titulo">{accion.titulo}</h3>
+                  <div className="pendientes-estado">
+                    <span className="pendientes-etiqueta">Estado actual:</span>
+                    <StatusBadge tipo="accion" valor={accion.estado} />
+                  </div>
                 </div>
 
-                <p>{accion.descripcion}</p>
+                <p className="pendientes-descripcion">{accion.descripcion}</p>
 
                 <ResponsibilityFlow
                   responsableActualId={accion.responsableActualId}

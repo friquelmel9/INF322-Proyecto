@@ -7,24 +7,43 @@ export default function ResponsibilityFlow({
   const esTurnoDelMemorista = responsableActualId === "memorista";
 
   return (
-    <div className="stack">
-      <p>
-        {esTurnoDelMemorista ? (
-          <strong>Te toca a ti</strong>
-        ) : (
-          <>
-            <strong>Esperando a: </strong>
-            <ResponsibleBadge responsableId={responsableActualId} />
-          </>
-        )}
-      </p>
+    <dl className="pendientes-responsables">
+      <div className="pendientes-responsable">
+        <dt>Responsable actual</dt>
+        <dd className="pendientes-responsable-valor">
+          {esTurnoDelMemorista ? (
+            <>
+              <ResponsibleBadge responsableId={responsableActualId} />
+              <p className="pendientes-ayuda">
+                <strong>Te toca a ti:</strong> realiza esta acción siguiendo las
+                instrucciones.
+              </p>
+            </>
+          ) : (
+            <>
+              <p className="pendientes-estado">
+                <span>Esperando a:</span>
+                <ResponsibleBadge responsableId={responsableActualId} />
+              </p>
+              <p className="pendientes-ayuda">
+                Esta acción avanza cuando interviene este responsable.
+              </p>
+            </>
+          )}
+        </dd>
+      </div>
 
       {siguienteResponsableId !== null && (
-        <p>
-          Después interviene:{" "}
-          <ResponsibleBadge responsableId={siguienteResponsableId} />
-        </p>
+        <div className="pendientes-responsable">
+          <dt>Después interviene:</dt>
+          <dd className="pendientes-responsable-valor">
+            <ResponsibleBadge responsableId={siguienteResponsableId} />
+            <p className="pendientes-ayuda">
+              Cuando se complete la acción actual.
+            </p>
+          </dd>
+        </div>
       )}
-    </div>
+    </dl>
   );
 }
