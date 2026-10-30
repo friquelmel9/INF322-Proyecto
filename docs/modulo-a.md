@@ -10,8 +10,23 @@
 - **Layout**: barra superior, menú lateral y contenedor de contenido (criterio A03).
 - **Estilos base** migrados del prototipo de la Entrega 2: tokens, tema claro/oscuro y tipografías (criterio A02).
 - **Placeholders** de las páginas de C/D/E para que la app compile de punta a punta.
+- **Carga de las hojas de estilo** en `main.jsx`, incluidas las del Módulo F.
+- **Enlace «Saltar al contenido»** y aviso de **«Escenario de demostración»** en la cabecera (contrato §7.5).
 
 El Módulo A **no** implementa datos, páginas de contenido ni componentes de H1/H2/H5: eso es de B/C/D/E/F.
+
+### Orden de carga de los CSS
+
+`main.jsx` los importa en este orden, y conviene respetarlo:
+
+```js
+import "./styles/global.css";      // A: tokens y base
+import "./styles/layout.css";      // A: estructura
+import "./styles/accessibility.css"; // F: foco, skip-link, modal, feedback
+import "./styles/responsive.css";    // F: ajustes por ancho de pantalla
+```
+
+`responsive.css` va **al final** a propósito: comparte selectores con `accessibility.css` (`.modal`, `.modal-fondo`) con la misma especificidad, y las media queries no la aumentan, así que si se carga antes sus ajustes móviles no se aplican.
 
 ## 2. Cómo ejecutar
 
