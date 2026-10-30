@@ -1,0 +1,117 @@
+/* =====================================================================
+ * responsive.css — Módulo F
+ * Ajustes responsive finos sobre el esqueleto de layout.css:
+ *   - base      : imágenes fluidas y texto que no desborda
+ *   - .sidenav  : menú de A en una fila horizontal hasta 820px
+ *                 (mismo punto de cambio que layout.css)
+ *   - móvil     : hasta 767px (línea de tiempo vertical, .grid de una
+ *                 columna, botones de tarjeta a todo el ancho, modal abajo)
+ *   - tablet    : 768px a 1023px (línea de tiempo en 2 columnas)
+ *
+ * Orden de carga: después de global.css y layout.css (se importa en main.jsx).
+ * Propiedad: solo el Módulo F edita este archivo. Si el punto de cambio de
+ * .sidenav en layout.css se modifica, ajustar aquí el valor de 820px.
+ * No se redefine nada de main, .shell ni box-sizing: eso es del Módulo A.
+ * El selector [class*="timeline"] es genérico y debe reemplazarse por la
+ * clase real del Módulo C al integrarlo.
+ * ===================================================================== */
+
+/* ============ BASE ============ */
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+body {
+  overflow-wrap: break-word;
+}
+
+/* ============ SIDEBAR DE A (.sidenav) ============
+   Mientras el menú esté arriba de la página, se muestra en una sola fila.
+   layout.css ya lo apila arriba a 820px; aquí se garantiza que el <nav>
+   interno también quede en fila y que, si no cabe, se desplace dentro de
+   su propia barra. */
+@media (max-width: 820px) {
+  aside.sidenav {
+    width: 100%;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  aside.sidenav nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 0.25rem;
+  }
+
+  aside.sidenav .navitem {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* ============ MÓVIL (hasta 767px) ============ */
+@media (max-width: 767px) {
+  /* Línea de tiempo de 8 etapas: de horizontal a vertical */
+  [class*="timeline"] {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-x: visible;
+  }
+
+  [class*="timeline"] > * {
+    width: 100%;
+  }
+
+  /* .grid de global.css: una columna */
+  .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Botones dentro del cuerpo de tarjetas a todo el ancho */
+  .card-b > .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Encabezado de tarjeta que no cabe: pasa a varias líneas */
+  .card-h {
+    flex-wrap: wrap;
+  }
+
+  /* Buscador de documentos */
+  input[type="search"],
+  input[type="text"] {
+    width: 100%;
+  }
+
+  /* Modal anclado abajo */
+  .modal-fondo {
+    padding: 0.5rem;
+    align-items: flex-end;
+  }
+  .modal {
+    max-height: 95vh;
+    border-radius: var(--r, 10px) var(--r, 10px) 0 0;
+  }
+}
+
+/* ============ TABLET (768px a 1023px) ============ */
+@media (min-width: 768px) and (max-width: 1023px) {
+  [class*="timeline"] {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  [class*="timeline"] > * {
+    flex: 1 1 calc(50% - 0.75rem);
+  }
+}
