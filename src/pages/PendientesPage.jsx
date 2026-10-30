@@ -1,10 +1,14 @@
 import { memorista } from "../data/memorista.js";
 import { acciones } from "../data/acciones.js";
+import NextActionCard from "../components/pendientes/NextActionCard.jsx";
 
 export default function PendientesPage() {
   const accionesEtapa = acciones
     .filter((accion) => accion.etapaId === memorista.etapaActualId)
     .sort((a, b) => a.prioridad - b.prioridad);
+
+  const accionPrioritaria = accionesEtapa[0];
+  const otrasAcciones = accionesEtapa.slice(1);
 
   return (
     <>
@@ -23,22 +27,32 @@ export default function PendientesPage() {
           Escenario de demostración: los datos son simulados.
         </p>
 
-        <section className="card">
-          <div className="card-h">
-            <h2>Acciones de tu etapa actual</h2>
-          </div>
+        {accionPrioritaria ? (
+          <NextActionCard accion={accionPrioritaria} />
+        ) : (
+          <p className="note">
+            No hay acciones registradas para tu etapa actual.
+          </p>
+        )}
 
-          <div className="card-b">
-            <ol className="stack">
-              {accionesEtapa.map((accion) => (
-                <li key={accion.id}>
-                  <h3>{accion.titulo}</h3>
-                  <p>{accion.descripcion}</p>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
+        {otrasAcciones.length > 0 && (
+          <section className="card">
+            <div className="card-h">
+              <h2>Otras acciones de tu etapa</h2>
+            </div>
+
+            <div className="card-b">
+              <ul className="stack">
+                {otrasAcciones.map((accion) => (
+                  <li key={accion.id}>
+                    <h3>{accion.titulo}</h3>
+                    <p>{accion.descripcion}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
       </div>
     </>
   );
