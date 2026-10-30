@@ -1,29 +1,44 @@
-/*
- * ⚠️ PLACEHOLDER creado por el Módulo A solo para que la app compile y el
- * router funcione de punta a punta.
- *
- * DUEÑO REAL: Módulo D — H2 «Próximos pasos» (/pendientes). Prioridad alta.
- * → Reemplaza TODO el contenido de este archivo por la página real.
- * → Debes crear además src/components/pendientes/ (NextActionCard, ResponsibilityFlow,
- *   PendingActionsList, ActionInstructions) según docs/contrato.md §2, §4 y §6.
- * → No modifiques App.jsx, main.jsx ni components/layout/ (son del Módulo A).
- */
+import { memorista } from "../data/memorista.js";
+import { acciones } from "../data/acciones.js";
+
 export default function PendientesPage() {
+  const accionesEtapa = acciones
+    .filter((accion) => accion.etapaId === memorista.etapaActualId)
+    .sort((a, b) => a.prioridad - b.prioridad);
+
   return (
     <>
       <div className="pagehead">
         <div>
-          <div className="eyebrow">H2 · Módulo D</div>
           <h1>Próximos pasos</h1>
-          <p>Próxima acción, instrucciones, responsable actual y siguiente responsable.</p>
+          <p>
+            {memorista.nombre} · {memorista.curso} · Etapa{" "}
+            {memorista.etapaActualId}
+          </p>
         </div>
       </div>
-      <div className="note">
-        <span>🚧</span>
-        <div>
-          <b>Página en construcción (Módulo D).</b> Este es un placeholder del Módulo A para
-          verificar la navegación. Reemplázalo por la implementación de H2.
-        </div>
+
+      <div className="stack">
+        <p className="note">
+          Escenario de demostración: los datos son simulados.
+        </p>
+
+        <section className="card">
+          <div className="card-h">
+            <h2>Acciones de tu etapa actual</h2>
+          </div>
+
+          <div className="card-b">
+            <ol className="stack">
+              {accionesEtapa.map((accion) => (
+                <li key={accion.id}>
+                  <h3>{accion.titulo}</h3>
+                  <p>{accion.descripcion}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
       </div>
     </>
   );
